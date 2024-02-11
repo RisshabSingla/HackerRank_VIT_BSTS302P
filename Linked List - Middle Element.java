@@ -39,11 +39,20 @@ public class Solution {
             }
         }
         Node slow = head;
+        if(n % 2 == 0){
+            slow = null;
+        }
+        
         Node fast = head;
         while(fast != null && fast.next != null ){
-            slow = slow.next;
+            if(slow == null){
+                slow = head;
+            }else{
+                slow = slow.next;
+            }
+            
             fast = fast.next.next;
         }
-        System.out.println(slow.data);
+        System.out.println(slow.data); 
     }
 }
