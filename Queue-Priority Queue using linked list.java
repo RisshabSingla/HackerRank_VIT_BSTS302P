@@ -1,19 +1,20 @@
 import java.io.*;
 import java.util.*;
-import javafx.util.*;
-
 
 public class Solution {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        PriorityQueue<Pair<Integer,Integer>> pq = new PriorityQueue<>((a,b) -> a.getValue() - b.getValue());
+        PriorityQueue<ArrayList<Integer>> pq = new PriorityQueue<>((a,b) -> a.get(1) - b.get(1));
         int n = sc.nextInt();
         while(n != 4){
             if(n == 1){
                 // insertion
                 int data = sc.nextInt();
                 int priority = sc.nextInt();
-                pq.add(new Pair<Integer,Integer>(data, priority));
+                ArrayList<Integer> arr = new ArrayList<>();
+                arr.add(data);
+                arr.add(priority);
+                pq.add(arr);
             }else if(n == 2){
                 // deletion
                 if(pq.isEmpty()){
@@ -28,15 +29,16 @@ public class Solution {
                     System.out.println("Empty");
                 }else{
                     System.out.print("Queue: ");
-                    for(Pair<Integer,Integer> p : pq){
-                        System.out.print(p.getKey() + " " + p.getValue() + " ");
+                    for(ArrayList<Integer> p : pq){
+                        for(int a : p){
+                            System.out.print(a + " ");
+                        }
                     }
                     System.out.println();
                 }
             }else{
                 System.out.println("Wrong Choice");
             }
-            
             n = sc.nextInt();
         }
     }
